@@ -16,6 +16,8 @@ Triangle::Triangle()
     side_A = 0;
     side_B = 0;
     side_C = 0;
+    P = 0;
+    S = 0;
 }
 
 /// <summary>
@@ -34,6 +36,8 @@ Triangle::Triangle(double x1_coord, double x2_coord, double x3_coord, double y1_
     side_A = 0;
     side_B = 0;
     side_C = 0;
+    calc_perim();
+    calc_area();
 }
 
 /// <summary>
@@ -52,6 +56,8 @@ Triangle::Triangle(double side_A, double side_B, double side_C)
     y2_coord = 0;
     y3_coord = 0;
     set_sides(side_A, side_B, side_C);
+    calc_perim();
+    calc_area();
 }
 
 /// <summary>
@@ -338,7 +344,7 @@ double Triangle::get_sideC() const
 /// <returns>
 /// длина стороны треугольника
 /// </returns>
-double Triangle::calc_side(double first_x, double first_y, double second_x, double second_y)
+double Triangle::calc_side(double first_x, double first_y, double second_x, double second_y) const
 {
     return sqrt(((first_x - second_x) * (first_x - second_x)) + ((first_y - second_y) * (first_y - second_y))); // Возвращает длину стороны треугольника по формуле
 }
@@ -347,36 +353,60 @@ double Triangle::calc_side(double first_x, double first_y, double second_x, doub
 /// вычисление периметра.
 /// правило: сумма двух сторон треугольника должна быть больше третьей стороны 
 /// </summary>
-/// <param name="sideA - первая сторона"></param>
-/// <param name="sideB - вторая сторона"></param>
-/// <param name="sideC - третья сторона"></param>
-/// <returns>
-/// периметр треугольника
-/// </returns>
-double Triangle::calc_perim(double sideA, double sideB, double sideC)
+void Triangle::calc_perim()
 {
-    if ((sideA + sideB <= sideC) || (sideB + sideC <= sideA) || (sideA + sideC <= sideB)) // если сумма двух сторон треугольника меньше или равна третьей стороне
-        return sideA + sideB + sideC; // Возвращает сумму трех сторон треугольника(периметр)
+    if ((get_sideA() == 0) || (get_sideB() == 0) || (get_sideC() == 0))
+    {
+        double side1 = calc_side(get_x1_coord(), get_y1_coord(), get_x2_coord(), get_y2_coord());
+        double side2 = calc_side(get_x1_coord(), get_y1_coord(), get_x3_coord(), get_y3_coord());
+        double side3 = calc_side(get_x2_coord(), get_x2_coord(), get_x3_coord(), get_y3_coord());
+        set_sides(side1, side2, side3);
+    }
+    if (((get_sideA() + get_sideB()) > get_sideC()) || ((get_sideB() + get_sideC()) > get_sideA()) || ((get_sideA() + get_sideC()) > get_sideB())) // если сумма двух сторон треугольника меньше или равна третьей стороне
+        P = get_sideA() + get_sideB() + get_sideA(); // Возвращает сумму трех сторон треугольника(периметр)
     else
-        return 0;
+        P = 0;
+}
+
+/// <summary>
+/// вывод периметра прямоугольника
+/// </summary>
+/// <returns>
+/// периметр прямоугольника
+/// </returns>
+double Triangle::get_perim() const
+{
+    return P;
 }
 
 /// <summary>
 /// вычисление площади.
 /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
 /// </summary>
-/// <param name="sideA - первая сторона"></param>
-/// <param name="sideB - вторая сторона"></param>
-/// <param name="sideC - третья сторона"></param>
+void Triangle::calc_area()
+{
+    if ((get_sideA() == 0) || (get_sideB() == 0) || (get_sideC() == 0))
+    {
+        double side1 = calc_side(get_x1_coord(), get_y1_coord(), get_x2_coord(), get_y2_coord());
+        double side2 = calc_side(get_x1_coord(), get_y1_coord(), get_x3_coord(), get_y3_coord());
+        double side3 = calc_side(get_x2_coord(), get_x2_coord(), get_x3_coord(), get_y3_coord());
+        set_sides(side1, side2, side3);
+    }
+    if (((get_sideA() + get_sideB()) > get_sideC()) || ((get_sideB() + get_sideC()) > get_sideA()) || ((get_sideA() + get_sideC()) > get_sideB())) // если сумма двух сторон треугольника меньше или равна третьей стороне
+        S = sqrt(((get_sideA() + get_sideB() + get_sideC()) / 2) * (((get_sideA() + get_sideB() + get_sideC()) / 2) - get_sideA()) * (((get_sideA() + get_sideB() + get_sideC()) / 2) - get_sideB()) * (((get_sideA() + get_sideB() + get_sideC()) / 2) - get_sideC())); // Возвращает периметр треугольника по формуле Герона
+    else
+        S = 0;
+}
+
+/// <summary>
+/// вывод площади треугольника
+/// </summary>
 /// <returns>
 /// площадь треугольника
 /// </returns>
-double Triangle::calc_area(double sideA, double sideB, double sideC)
+double Triangle::get_area() const
 {
-    if ((sideA + sideB <= sideC) || (sideB + sideC <= sideA) || (sideA + sideC <= sideB)) // если сумма двух сторон треугольника меньше или равна третьей стороне
-        return sqrt(((sideA + sideB + sideC) / 2) * (((sideA + sideB + sideC) / 2) - sideA) * (((sideA + sideB + sideC) / 2) - sideB) * (((sideA + sideB + sideC) / 2) - sideC)); // Возвращает периметр треугольника по формуле Герона
-    else
-        return 0;
+    return S;
 }
 
 /// <summary>
@@ -388,11 +418,13 @@ double Triangle::calc_area(double sideA, double sideB, double sideC)
 std::string Triangle::to_string() const
 {
     std::string s =
-        "First vertex: " + std::to_string(x1_coord) + " " + std::to_string(y1_coord) + "\n" +
-        "Second vertex: " + std::to_string(x2_coord) + " " + std::to_string(y2_coord) + "\n" +
-        "Third vertex: " + std::to_string(x3_coord) + " " + std::to_string(y3_coord) + "\n" +
-        "First side: " + std::to_string(side_A) + "\n" +
-        "Second side: " + std::to_string(side_B) + "\n" +
-        "Third side: " + std::to_string(side_C) + "\n";
+        "First vertex: " + std::to_string(get_x1_coord()) + " " + std::to_string(get_y1_coord()) + "\n" +
+        "Second vertex: " + std::to_string(get_x2_coord()) + " " + std::to_string(get_y2_coord()) + "\n" +
+        "Third vertex: " + std::to_string(get_x3_coord()) + " " + std::to_string(get_y3_coord()) + "\n" +
+        "First side: " + std::to_string(get_sideA()) + "\n" +
+        "Second side: " + std::to_string(get_sideB()) + "\n" +
+        "Third side: " + std::to_string(get_sideC()) + "\n" +
+        "Perimeter: " + std::to_string(get_perim()) + "\n" +
+        "Area: " + std::to_string(get_area()) + "\n";
     return s;
 }

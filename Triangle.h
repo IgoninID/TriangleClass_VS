@@ -8,7 +8,7 @@
 /// </summary>
 class Triangle
 {
-private:
+private: // приватная область - доступ только внутри класса
     double x1_coord; // координата x первой вершины
     double x2_coord; // координата x второй вершины
     double x3_coord; // координата x третьей вершины
@@ -18,8 +18,10 @@ private:
     double side_A; // первая сторона треугольника
     double side_B; // вторая сторона треугольника
     double side_C; // третья сторона треугольника
+    double P; // периметр треугольника
+    double S; // площадь треугольника
 
-public:
+public: // общедоступная область - доступ вне класса
 
     /// <summary>
     /// конструктор без параметров
@@ -235,29 +237,33 @@ public:
     /// <returns>
     /// длина стороны треугольника
     /// </returns>
-    double calc_side(double first_x, double first_y, double second_x, double second_y);
+    double calc_side(double first_x, double first_y, double second_x, double second_y) const;
 
     /// <summary>
     /// вычисление периметра.
     /// правило: сумма двух сторон треугольника должна быть больше третьей стороны 
     /// </summary>
-    /// <param name="sideA - первая сторона"></param>
-    /// <param name="sideB - вторая сторона"></param>
-    /// <param name="sideC - третья сторона"></param>
-    /// <returns>
-    /// периметр треугольника
-    /// </returns>
-    double calc_perim(double sideA, double sideB, double sideC);
+    void calc_perim();
 
     /// <summary>
     /// вычисление площади.
     /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
     /// </summary>
-    /// <param name="sideA - первая сторона"></param>
-    /// <param name="sideB - вторая сторона"></param>
-    /// <param name="sideC - третья сторона"></param>
+    void calc_area();
+
+    /// <summary>
+    /// вывод периметра прямоугольника
+    /// </summary>
+    /// <returns>
+    /// периметр прямоугольника
+    /// </returns>
+    double get_perim() const;
+
+    /// <summary>
+    /// вывод площади треугольника
+    /// </summary>
     /// <returns>
     /// площадь треугольника
     /// </returns>
-    double calc_area(double sideA, double sideB, double sideC);
+    double get_area() const;
 };
