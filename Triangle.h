@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include <string> // библиотека для работы со строками
 
 /// <summary>
 /// Класс треугольник.

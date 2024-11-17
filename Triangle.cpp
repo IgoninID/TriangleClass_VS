@@ -421,7 +421,7 @@ void test()
     Triangle Test2(-1, 2, 4, -5, 9, 10);
     Triangle Test3;
     Test3.set_sides(12, 13, 14);
-    assert((Test3.get_sideA() - 12) < 0.00001);
+    assert((Test3.get_sideA() - 12) < 0.00001); //проверка методов
     assert((Test3.get_sideB() - 13) < 0.00001);
     assert((Test3.get_sideC() - 14) < 0.00001);
     assert((Test1.calc_perim() - 33) < 0.00001);

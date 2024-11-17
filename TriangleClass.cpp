@@ -48,7 +48,7 @@ int main()
     print_triangle(*Fifth);
     delete Fifth;
 
-    Triangle Test(11, 11, 11);
+    Triangle Test(11, 11, 11); //тестовый треугольник
     print_triangle(Test);
 
     return 0; // завершение работы программы
