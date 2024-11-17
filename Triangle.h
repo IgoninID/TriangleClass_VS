@@ -38,7 +38,7 @@ public: // общедоступная область - доступ вне класса
     /// <param name="y1_coord - координата y первой вершины"></param>
     /// <param name="y2_coord - координата y второй вершины"></param>
     /// <param name="y3_coord - координата y третьей вершины"></param>
-    Triangle(double x1_coord, double x2_coord, double x3_coord, double y1_coord, double y2_coord, double y3_coord);
+    Triangle(double x1_coord, double y1_coord, double x2_coord, double y2_coord, double x3_coord, double y3_coord);
 
     /// <summary>
     /// конструктор с параметрами для сторон треугольника
@@ -267,3 +267,5 @@ public: // общедоступная область - доступ вне класса
     /// </returns>
     double get_area() const;
 };
+
+void test();

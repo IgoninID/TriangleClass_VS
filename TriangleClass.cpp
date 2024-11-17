@@ -14,6 +14,7 @@ void print_triangle(const Triangle& Trian)
 
 int main()
 {
+    test();
     Triangle FirstTri; // объявление объекта, вызов конструктора без параметров
     print_triangle(FirstTri); // вызов функции вывода информации о треугольнике
     cout << "\n"; // пустая строка
@@ -42,6 +43,10 @@ int main()
     }
     for (int i = 0; i < 3; i++)
         delete Fourth[i]; // очищение памяти
+
+    Triangle* Fifth = new Triangle(22, 22, 22); //динамическое создание 1 объекта
+    print_triangle(*Fifth);
+    delete Fifth;
 
     return 0; // завершение работы программы
 }

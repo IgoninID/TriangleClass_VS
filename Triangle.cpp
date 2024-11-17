@@ -1,5 +1,6 @@
 #include <cmath>
 #include <string>
+#include <cassert>
 #include "Triangle.h"
 
 /// <summary>
@@ -30,7 +31,7 @@ Triangle::Triangle()
 /// <param name="y1_coord - координата y первой вершины"></param>
 /// <param name="y2_coord - координата y второй вершины"></param>
 /// <param name="y3_coord - координата y третьей вершины"></param>
-Triangle::Triangle(double x1_coord, double x2_coord, double x3_coord, double y1_coord, double y2_coord, double y3_coord)
+Triangle::Triangle(double x1_coord, double y1_coord, double x2_coord, double y2_coord, double x3_coord, double y3_coord)
 {
     set_all_vert(x1_coord, y1_coord, x2_coord, y2_coord, x3_coord, y3_coord);
     side_A = 0;
@@ -359,7 +360,7 @@ void Triangle::calc_perim()
     {
         double side1 = calc_side(get_x1_coord(), get_y1_coord(), get_x2_coord(), get_y2_coord());
         double side2 = calc_side(get_x1_coord(), get_y1_coord(), get_x3_coord(), get_y3_coord());
-        double side3 = calc_side(get_x2_coord(), get_x2_coord(), get_x3_coord(), get_y3_coord());
+        double side3 = calc_side(get_x2_coord(), get_y2_coord(), get_x3_coord(), get_y3_coord());
         set_sides(side1, side2, side3);
     }
     if (((get_sideA() + get_sideB()) > get_sideC()) || ((get_sideB() + get_sideC()) > get_sideA()) || ((get_sideA() + get_sideC()) > get_sideB())) // если сумма двух сторон треугольника меньше или равна третьей стороне
@@ -427,4 +428,16 @@ std::string Triangle::to_string() const
         "Perimeter: " + std::to_string(get_perim()) + "\n" +
         "Area: " + std::to_string(get_area()) + "\n";
     return s;
+}
+
+void test()
+{
+    Triangle Test1(11, 11, 11);
+    Triangle Test2(-1, 2, 4, -5, 9, 10);
+    Triangle Test3;
+    Test3.set_sides(12, 13, 12);
+    assert((Test3.get_sideB() - 13) < 0.00001);
+    assert((Test1.get_perim() - 33) < 0.00001);
+    assert((Test2.get_area() - 55) < 0.00001);
+    assert((Test2.get_x1_coord() - (-1)) < 0.00001);
 }
