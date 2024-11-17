@@ -440,4 +440,5 @@ void test()
     assert((Test1.get_perim() - 33) < 0.00001);
     assert((Test2.get_area() - 55) < 0.00001);
     assert((Test2.get_x1_coord() - (-1)) < 0.00001);
+    assert((Test2.get_y1_coord() - (2)) < 0.00001);
 }
