@@ -7,7 +7,7 @@ using namespace std;
 /// вывод информации о треугольнике
 /// </summary>
 /// <param name="Trian - объект треугольник"></param>
-void print_triangle(const Triangle& Trian)
+void print_triangle(Triangle& Trian)
 {
     cout << Trian.to_string(); // вывод строки с информацией о треугольнике
 }
@@ -47,6 +47,9 @@ int main()
     Triangle* Fifth = new Triangle(22, 22, 22); //динамическое создание 1 объекта
     print_triangle(*Fifth);
     delete Fifth;
+
+    Triangle Test(11, 11, 11);
+    print_triangle(Test);
 
     return 0; // завершение работы программы
 }

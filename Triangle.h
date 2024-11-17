@@ -15,11 +15,11 @@ private: // приватная область - доступ только внутри класса
     double y1_coord; // координата y первой вершины
     double y2_coord; // координата y второй вершины
     double y3_coord; // координата y третьей вершины
+  
+    //
     double side_A; // первая сторона треугольника
     double side_B; // вторая сторона треугольника
     double side_C; // третья сторона треугольника
-    double P; // периметр треугольника
-    double S; // площадь треугольника
 
 public: // общедоступная область - доступ вне класса
 
@@ -225,47 +225,32 @@ public: // общедоступная область - доступ вне класса
     /// <returns>
     /// строка с информацией о треугольнике: координаты вершин, длина сторон, периметр и площадь
     /// </returns>
-    std::string to_string() const;
-
-    /// <summary>
-    /// вычисление стороны треугольника.
-    /// </summary>
-    /// <param name="first_x - координата x одной вершины"></param>
-    /// <param name="first_y - координата y одной вершины"></param>
-    /// <param name="second_x - координата x другой вершины"></param>
-    /// <param name="second_y - координата y другой вершины"></param>
-    /// <returns>
-    /// длина стороны треугольника
-    /// </returns>
-    double calc_side(double first_x, double first_y, double second_x, double second_y) const;
+    std::string to_string();
 
     /// <summary>
     /// вычисление периметра.
     /// правило: сумма двух сторон треугольника должна быть больше третьей стороны 
     /// </summary>
-    void calc_perim();
+    double calc_perim();
 
     /// <summary>
     /// вычисление площади.
     /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
     /// </summary>
-    void calc_area();
+    double calc_area();
 
-    /// <summary>
-    /// вывод периметра прямоугольника
-    /// </summary>
-    /// <returns>
-    /// периметр прямоугольника
-    /// </returns>
-    double get_perim() const;
-
-    /// <summary>
-    /// вывод площади треугольника
-    /// </summary>
-    /// <returns>
-    /// площадь треугольника
-    /// </returns>
-    double get_area() const;
 };
+
+/// <summary>
+/// вычисление стороны треугольника.
+/// </summary>
+/// <param name="first_x - координата x одной вершины"></param>
+/// <param name="first_y - координата y одной вершины"></param>
+/// <param name="second_x - координата x другой вершины"></param>
+/// <param name="second_y - координата y другой вершины"></param>
+/// <returns>
+/// длина стороны треугольника
+/// </returns>
+double calc_side(double first_x, double first_y, double second_x, double second_y);
 
 void test();
