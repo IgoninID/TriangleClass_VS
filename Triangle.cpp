@@ -348,6 +348,9 @@ double calc_side(double first_x, double first_y, double second_x, double second_
 /// вычисление периметра.
 /// правило: сумма двух сторон треугольника должна быть больше третьей стороны 
 /// </summary>
+/// <returns>
+/// периметр треугольника
+/// </returns>
 double Triangle::calc_perim()
 {
     double P;
@@ -369,6 +372,9 @@ double Triangle::calc_perim()
 /// вычисление площади.
 /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
 /// </summary>
+/// <returns>
+/// площадь треугольника
+/// </returns>
 double Triangle::calc_area()
 {
     double S;
@@ -406,6 +412,9 @@ std::string Triangle::to_string()
     return s;
 }
 
+/// <summary>
+/// проверка работы методов и функций
+/// </summary>
 void test()
 {
     Triangle Test1(11, 11, 11);
@@ -432,7 +441,4 @@ void test()
     assert((Test4.get_y2_coord() - (5)) < 0.00001);
     assert((Test4.get_x3_coord() - (-7)) < 0.00001);
     assert((Test4.get_y3_coord() - (-6)) < 0.00001);
-
-    // todo: to_string
-    // todo: another methods
 }

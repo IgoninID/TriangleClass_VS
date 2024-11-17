@@ -14,7 +14,7 @@ void print_triangle(Triangle& Trian)
 
 int main()
 {
-    test();
+    test(); //вызов проверки
     Triangle FirstTri; // объявление объекта, вызов конструктора без параметров
     print_triangle(FirstTri); // вызов функции вывода информации о треугольнике
     cout << "\n"; // пустая строка
