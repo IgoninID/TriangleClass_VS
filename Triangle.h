@@ -2,11 +2,23 @@
 #include <string> // библиотека для работы со строками
 
 /// <summary>
+/// вычисление стороны треугольника.
+/// </summary>
+/// <param name="first_x - координата x одной вершины"></param>
+/// <param name="first_y - координата y одной вершины"></param>
+/// <param name="second_x - координата x другой вершины"></param>
+/// <param name="second_y - координата y другой вершины"></param>
+/// <returns>
+/// длина стороны треугольника
+/// </returns>
+double calc_side(double first_x, double first_y, double second_x, double second_y);
+
+/// <summary>
 /// Класс треугольник.
 /// поля: координаты вершин, стороны треугольника.
 /// методы: ввод и вывод координат, вычисление периметра и площади.
 /// </summary>
-class Triangle
+class Triangle_coord
 {
 private: // приватная область - доступ только внутри класса
     double x1_coord; // координата x первой вершины
@@ -15,18 +27,13 @@ private: // приватная область - доступ только внутри класса
     double y1_coord; // координата y первой вершины
     double y2_coord; // координата y второй вершины
     double y3_coord; // координата y третьей вершины
-  
-    //
-    double side_A; // первая сторона треугольника
-    double side_B; // вторая сторона треугольника
-    double side_C; // третья сторона треугольника
 
 public: // общедоступная область - доступ вне класса
 
     /// <summary>
     /// конструктор без параметров
     /// </summary>
-    Triangle();
+    Triangle_coord();
 
     /// <summary>
     /// конструктор с параметрами для координат вершин треугольника
@@ -38,15 +45,7 @@ public: // общедоступная область - доступ вне класса
     /// <param name="y1_coord - координата y первой вершины"></param>
     /// <param name="y2_coord - координата y второй вершины"></param>
     /// <param name="y3_coord - координата y третьей вершины"></param>
-    Triangle(double x1_coord, double y1_coord, double x2_coord, double y2_coord, double x3_coord, double y3_coord);
-
-    /// <summary>
-    /// конструктор с параметрами для сторон треугольника
-    /// </summary>
-    /// <param name="side_A - первая сторона треугольника"></param>
-    /// <param name="side_B - вторая сторона треугольника"></param>
-    /// <param name="side_C - третья сторона треугольника"></param>
-    Triangle(double side_A, double side_B, double side_C);
+    Triangle_coord(double x1_coord, double y1_coord, double x2_coord, double y2_coord, double x3_coord, double y3_coord);
 
     /// <summary>
     /// ввод координаты x первой вершины
@@ -118,36 +117,6 @@ public: // общедоступная область - доступ вне класса
     void set_all_vert(double x1, double y1, double x2, double y2, double x3, double y3);
 
     /// <summary>
-    /// ввод первой стороны треугольника.
-    /// правило: неотрицательное число
-    /// </summary>
-    /// <param name="side"></param>
-    void set_sideA(double side);
-
-    /// <summary>
-    /// ввод второй стороны треугольника.
-    /// правило: неотрицательное число
-    /// </summary>
-    /// <param name="side"></param>
-    void set_sideB(double side);
-
-    /// <summary>
-    /// ввод третьей стороны треугольника.
-    /// правило: неотрицательное число
-    /// </summary>
-    /// <param name="side"></param>
-    void set_sideC(double side);
-
-    /// <summary>
-    /// ввод сторон треугольника.
-    /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
-    /// </summary>
-    /// <param name="fside - первая сторона треугольника"></param>
-    /// <param name="sside - вторая сторона треугольника"></param>
-    /// <param name="tside - третья сторона треугольника"></param>
-    void set_sides(double fside, double sside, double tside);
-
-    /// <summary>
     /// вывод координаты x первой вершины
     /// </summary>
     /// <returns>
@@ -196,6 +165,96 @@ public: // общедоступная область - доступ вне класса
     double get_y3_coord() const;
 
     /// <summary>
+    /// вывод информации о треугольнике
+    /// </summary>
+    /// <returns>
+    /// строка с информацией о треугольнике: координаты вершин, длина сторон, периметр и площадь
+    /// </returns>
+    std::string to_string() const;
+
+    /// <summary>
+    /// вычисление периметра.
+    /// правило: сумма двух сторон треугольника должна быть больше третьей стороны 
+    /// </summary>
+    /// <returns>
+    /// периметр треугольника
+    /// </returns>
+    double calc_perim() const;
+
+    /// <summary>
+    /// вычисление площади.
+    /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
+    /// </summary>
+    /// <returns>
+    /// площадь треугольника
+    /// </returns>
+    double calc_area() const;
+
+    void Safe_file(const char* name) const;
+
+    //Triangle_coord Load_file(const char* name);
+
+};
+
+/// <summary>
+/// Класс треугольник.
+/// поля: координаты вершин, стороны треугольника.
+/// методы: ввод и вывод координат, вычисление периметра и площади.
+/// </summary>
+class Triangle_sides
+{
+private: // приватная область - доступ только внутри класса
+
+    double side_A; // первая сторона треугольника
+    double side_B; // вторая сторона треугольника
+    double side_C; // третья сторона треугольника
+
+public: // общедоступная область - доступ вне класса
+
+    /// <summary>
+    /// конструктор без параметров
+    /// </summary>
+    Triangle_sides();
+
+    /// <summary>
+    /// конструктор с параметрами для сторон треугольника
+    /// </summary>
+    /// <param name="side_A - первая сторона треугольника"></param>
+    /// <param name="side_B - вторая сторона треугольника"></param>
+    /// <param name="side_C - третья сторона треугольника"></param>
+    Triangle_sides(double side_A, double side_B, double side_C);
+
+    /// <summary>
+    /// ввод первой стороны треугольника.
+    /// правило: неотрицательное число
+    /// </summary>
+    /// <param name="side"></param>
+    void set_sideA(double side);
+
+    /// <summary>
+    /// ввод второй стороны треугольника.
+    /// правило: неотрицательное число
+    /// </summary>
+    /// <param name="side"></param>
+    void set_sideB(double side);
+
+    /// <summary>
+    /// ввод третьей стороны треугольника.
+    /// правило: неотрицательное число
+    /// </summary>
+    /// <param name="side"></param>
+    void set_sideC(double side);
+
+    /// <summary>
+    /// ввод сторон треугольника.
+    /// правило: сумма двух сторон треугольника должна быть больше третьей стороны
+    /// </summary>
+    /// <param name="fside - первая сторона треугольника"></param>
+    /// <param name="sside - вторая сторона треугольника"></param>
+    /// <param name="tside - третья сторона треугольника"></param>
+    void set_sides(double fside, double sside, double tside);
+
+    /// <summary>
     /// вывод первой стороны треугольника
     /// </summary>
     /// <returns>
@@ -225,7 +284,7 @@ public: // общедоступная область - доступ вне класса
     /// <returns>
     /// строка с информацией о треугольнике: координаты вершин, длина сторон, периметр и площадь
     /// </returns>
-    std::string to_string();
+    std::string to_string() const;
 
     /// <summary>
     /// вычисление периметра.
@@ -234,7 +293,7 @@ public: // общедоступная область - доступ вне класса
     /// <returns>
     /// периметр треугольника
     /// </returns>
-    double calc_perim();
+    double calc_perim() const;
 
     /// <summary>
     /// вычисление площади.
@@ -243,23 +302,23 @@ public: // общедоступная область - доступ вне класса
     /// <returns>
     /// площадь треугольника
     /// </returns>
-    double calc_area();
+    double calc_area() const;
+
+    void Safe_file(const char* name) const;
+
+    //Triangle_sides Load_file(const char* name);
 
 };
-
-/// <summary>
-/// вычисление стороны треугольника.
-/// </summary>
-/// <param name="first_x - координата x одной вершины"></param>
-/// <param name="first_y - координата y одной вершины"></param>
-/// <param name="second_x - координата x другой вершины"></param>
-/// <param name="second_y - координата y другой вершины"></param>
-/// <returns>
-/// длина стороны треугольника
-/// </returns>
-double calc_side(double first_x, double first_y, double second_x, double second_y);
 
 /// <summary>
 /// проверка работы методов и функций
 /// </summary>
 void test();
+
+union Triangle
+{
+    Triangle_coord* TriangleC;
+    Triangle_sides* TriangleS;
+};
+
+

@@ -1,19 +1,27 @@
 #include <cmath>
 #include <string>
+#include <fstream>
 #include <cassert>
 #include "Triangle.h"
+
+    /// <summary>
+    /// конструктор без параметров
+    /// </summary>
+    Triangle_coord::Triangle_coord()
+    {
+        x1_coord = 0;
+        x2_coord = 0;
+        x3_coord = 0;
+        y1_coord = 0;
+        y2_coord = 0;
+        y3_coord = 0;
+    }
 
 /// <summary>
 /// конструктор без параметров
 /// </summary>
-Triangle::Triangle()
+Triangle_sides::Triangle_sides()
 {
-    x1_coord = 0;
-    x2_coord = 0;
-    x3_coord = 0;
-    y1_coord = 0;
-    y2_coord = 0;
-    y3_coord = 0;
     side_A = 0;
     side_B = 0;
     side_C = 0;
@@ -29,12 +37,9 @@ Triangle::Triangle()
 /// <param name="y1_coord - координата y первой вершины"></param>
 /// <param name="y2_coord - координата y второй вершины"></param>
 /// <param name="y3_coord - координата y третьей вершины"></param>
-Triangle::Triangle(double x1_coord, double y1_coord, double x2_coord, double y2_coord, double x3_coord, double y3_coord)
+Triangle_coord::Triangle_coord(double x1_coord, double y1_coord, double x2_coord, double y2_coord, double x3_coord, double y3_coord)
 {
     set_all_vert(x1_coord, y1_coord, x2_coord, y2_coord, x3_coord, y3_coord);
-    side_A = 0;
-    side_B = 0;
-    side_C = 0;
 }
 
 /// <summary>
@@ -44,14 +49,8 @@ Triangle::Triangle(double x1_coord, double y1_coord, double x2_coord, double y2_
 /// <param name="side_A - первая сторона треугольника"></param>
 /// <param name="side_B - вторая сторона треугольника"></param>
 /// <param name="side_C - третья сторона треугольника"></param>
-Triangle::Triangle(double side_A, double side_B, double side_C)
+Triangle_sides::Triangle_sides(double side_A, double side_B, double side_C)
 {
-    x1_coord = 0;
-    x2_coord = 0;
-    x3_coord = 0;
-    y1_coord = 0;
-    y2_coord = 0;
-    y3_coord = 0;
     set_sides(side_A, side_B, side_C);
 }
 
@@ -59,7 +58,7 @@ Triangle::Triangle(double side_A, double side_B, double side_C)
 /// ввод координаты x первой вершины
 /// </summary>
 /// <param name="x - координата x"></param>
-void Triangle::set_x1_coord(double x)
+void Triangle_coord::set_x1_coord(double x)
 {
     x1_coord = x;
 }
@@ -68,7 +67,7 @@ void Triangle::set_x1_coord(double x)
 /// ввод координаты x второй вершины
 /// </summary>
 /// <param name="x - координата x"></param>
-void Triangle::set_x2_coord(double x)
+void Triangle_coord::set_x2_coord(double x)
 {
     x2_coord = x;
 }
@@ -77,7 +76,7 @@ void Triangle::set_x2_coord(double x)
 /// ввод координаты x третьей вершины
 /// </summary>
 /// <param name="x - координата x"></param>
-void Triangle::set_x3_coord(double x)
+void Triangle_coord::set_x3_coord(double x)
 {
     x3_coord = x;
 }
@@ -86,7 +85,7 @@ void Triangle::set_x3_coord(double x)
 /// ввод координаты y первой вершины
 /// </summary>
 /// <param name="y - координата y"></param>
-void Triangle::set_y1_coord(double y)
+void Triangle_coord::set_y1_coord(double y)
 {
     y1_coord = y;
 }
@@ -95,7 +94,7 @@ void Triangle::set_y1_coord(double y)
 /// ввод координаты y второй вершины
 /// </summary>
 /// <param name="y - координата y"></param>
-void Triangle::set_y2_coord(double y)
+void Triangle_coord::set_y2_coord(double y)
 {
     y2_coord = y;
 }
@@ -104,7 +103,7 @@ void Triangle::set_y2_coord(double y)
 /// ввод координаты x третьей вершины
 /// </summary>
 /// <param name="y - координата y"></param>
-void Triangle::set_y3_coord(double y)
+void Triangle_coord::set_y3_coord(double y)
 {
     y3_coord = y;
 }
@@ -114,7 +113,7 @@ void Triangle::set_y3_coord(double y)
 /// </summary>
 /// <param name="x - координата x"></param>
 /// <param name="y - координата y"></param>
-void Triangle::set_first_vert(double x, double y)
+void Triangle_coord::set_first_vert(double x, double y)
 {
     set_x1_coord(x);
     set_y1_coord(y);
@@ -125,7 +124,7 @@ void Triangle::set_first_vert(double x, double y)
 /// </summary>
 /// <param name="x - координата x"></param>
 /// <param name="y - координата y"></param>
-void Triangle::set_second_vert(double x, double y)
+void Triangle_coord::set_second_vert(double x, double y)
 {
     set_x2_coord(x);
     set_y2_coord(y);
@@ -136,7 +135,7 @@ void Triangle::set_second_vert(double x, double y)
 /// </summary>
 /// <param name="x - координата x"></param>
 /// <param name="y - координата y"></param>
-void Triangle::set_third_vert(double x, double y)
+void Triangle_coord::set_third_vert(double x, double y)
 {
     set_x3_coord(x);
     set_y3_coord(y);
@@ -152,7 +151,7 @@ void Triangle::set_third_vert(double x, double y)
 /// <param name="y2 - координата y второй вершины"></param>
 /// <param name="x3 - координата x третьей вершины"></param>
 /// <param name="y3 - координата y третьей вершины"></param>
-void Triangle::set_all_vert(double x1, double y1, double x2, double y2, double x3, double y3)
+void Triangle_coord::set_all_vert(double x1, double y1, double x2, double y2, double x3, double y3)
 {
     if (((x1 == y1) && (x1 == x2) && (x2 == y2)) || ((x1 == y1) && (x1 == x3) && (x3 == y3)) || ((x2 == y2) && (x2 == x3) && (x3 == y3)))
     {
@@ -173,7 +172,7 @@ void Triangle::set_all_vert(double x1, double y1, double x2, double y2, double x
 /// правило: неотрицательное число
 /// </summary>
 /// <param name="side"></param>
-void Triangle::set_sideA(double side)
+void Triangle_sides::set_sideA(double side)
 {
     if (side >= 0)
         side_A = side;
@@ -186,7 +185,7 @@ void Triangle::set_sideA(double side)
 /// правило: неотрицательное число
 /// </summary>
 /// <param name="side"></param>
-void Triangle::set_sideB(double side)
+void Triangle_sides::set_sideB(double side)
 {
     if (side >= 0)
         side_B = side;
@@ -199,7 +198,7 @@ void Triangle::set_sideB(double side)
 /// правило: неотрицательное число
 /// </summary>
 /// <param name="side"></param>
-void Triangle::set_sideC(double side)
+void Triangle_sides::set_sideC(double side)
 {
     if (side >= 0)
         side_C = side;
@@ -214,7 +213,7 @@ void Triangle::set_sideC(double side)
 /// <param name="fside - первая сторона треугольника"></param>
 /// <param name="sside - вторая сторона треугольника"></param>
 /// <param name="tside - третья сторона треугольника"></param>
-void Triangle::set_sides(double fside, double sside, double tside)
+void Triangle_sides::set_sides(double fside, double sside, double tside)
 {
     if ((fside + sside <= tside) || (sside + tside <= fside) || (fside + tside <= sside))
     {
@@ -236,7 +235,7 @@ void Triangle::set_sides(double fside, double sside, double tside)
 /// <returns>
 /// координата x первой вершины
 /// </returns>
-double Triangle::get_x1_coord() const
+double Triangle_coord::get_x1_coord() const
 {
     return x1_coord;
 }
@@ -247,7 +246,7 @@ double Triangle::get_x1_coord() const
 /// <returns>
 ///  координата x второй вершины
 /// </returns>
-double Triangle::get_x2_coord() const
+double Triangle_coord::get_x2_coord() const
 {
     return x2_coord;
 }
@@ -258,7 +257,7 @@ double Triangle::get_x2_coord() const
 /// <returns>
 ///  координата x третьей вершины
 /// </returns>
-double Triangle::get_x3_coord() const
+double Triangle_coord::get_x3_coord() const
 {
     return x3_coord;
 }
@@ -269,7 +268,7 @@ double Triangle::get_x3_coord() const
 /// <returns>
 /// координата y первой вершины
 /// </returns>
-double Triangle::get_y1_coord() const
+double Triangle_coord::get_y1_coord() const
 {
     return y1_coord;
 }
@@ -280,7 +279,7 @@ double Triangle::get_y1_coord() const
 /// <returns>
 /// координата y второй вершины
 /// </returns>
-double Triangle::get_y2_coord() const
+double Triangle_coord::get_y2_coord() const
 {
     return y2_coord;
 }
@@ -291,7 +290,7 @@ double Triangle::get_y2_coord() const
 /// <returns>
 /// координата y третьей вершины
 /// </returns>
-double Triangle::get_y3_coord() const
+double Triangle_coord::get_y3_coord() const
 {
     return y3_coord;
 }
@@ -302,7 +301,7 @@ double Triangle::get_y3_coord() const
 /// <returns>
 /// длина первой стороны треугольника
 /// </returns>
-double Triangle::get_sideA() const
+double Triangle_sides::get_sideA() const
 {
     return side_A;
 }
@@ -313,7 +312,7 @@ double Triangle::get_sideA() const
 /// <returns>
 /// длина второй стороны треугольника
 /// </returns>
-double Triangle::get_sideB() const
+double Triangle_sides::get_sideB() const
 {
     return side_B;
 }
@@ -324,7 +323,7 @@ double Triangle::get_sideB() const
 /// <returns>
 /// длина третьей стороны треугольника
 /// </returns>
-double Triangle::get_sideC() const
+double Triangle_sides::get_sideC() const
 {
     return side_C;
 }
@@ -351,17 +350,30 @@ double calc_side(double first_x, double first_y, double second_x, double second_
 /// <returns>
 /// периметр треугольника
 /// </returns>
-double Triangle::calc_perim()
+double Triangle_coord::calc_perim() const
 {
     double P;
-    if ((get_sideA() == 0) || (get_sideB() == 0) || (get_sideC() == 0))
-    {
         double side1 = calc_side(get_x1_coord(), get_y1_coord(), get_x2_coord(), get_y2_coord());
         double side2 = calc_side(get_x1_coord(), get_y1_coord(), get_x3_coord(), get_y3_coord());
         double side3 = calc_side(get_x2_coord(), get_y2_coord(), get_x3_coord(), get_y3_coord());
-        set_sides(side1, side2, side3);
-    }
-    if (((get_sideA() + get_sideB()) > get_sideC()) || ((get_sideB() + get_sideC()) > get_sideA()) || ((get_sideA() + get_sideC()) > get_sideB())) // если сумма двух сторон треугольника меньше или равна третьей стороне
+    if ((((side1 + side2) > side3) && ((side2 + side3) > side1) && ((side1 + side3) > side2)) && ((side1 > 0.0) && (side2 > 0.0) && (side3 > 0.0))) // если сумма двух сторон треугольника меньше или равна третьей стороне
+        P = side1 + side2 + side3; // Возвращает сумму трех сторон треугольника(периметр)
+    else
+        P = 0;
+    return P;
+}
+
+/// <summary>
+/// вычисление периметра.
+/// правило: сумма двух сторон треугольника должна быть больше третьей стороны 
+/// </summary>
+/// <returns>
+/// периметр треугольника
+/// </returns>
+double Triangle_sides::calc_perim() const
+{
+    double P;
+    if (((get_sideA() + get_sideB()) > get_sideC()) && ((get_sideB() + get_sideC()) > get_sideA()) && ((get_sideA() + get_sideC()) > get_sideB()) && (get_sideA() > 0) && (get_sideB() > 0) && (get_sideC() > 0)) // если сумма двух сторон треугольника меньше или равна третьей стороне
         P = get_sideA() + get_sideB() + get_sideA(); // Возвращает сумму трех сторон треугольника(периметр)
     else
         P = 0;
@@ -375,18 +387,37 @@ double Triangle::calc_perim()
 /// <returns>
 /// площадь треугольника
 /// </returns>
-double Triangle::calc_area()
+double Triangle_coord::calc_area() const
 {
     double S;
-    if ((get_sideA() == 0) || (get_sideB() == 0) || (get_sideC() == 0))
+    double side1 = calc_side(get_x1_coord(), get_y1_coord(), get_x2_coord(), get_y2_coord());
+    double side2 = calc_side(get_x1_coord(), get_y1_coord(), get_x3_coord(), get_y3_coord());
+    double side3 = calc_side(get_x2_coord(), get_y2_coord(), get_x3_coord(), get_y3_coord());
+    if ((((side1 + side2) > side3) && ((side2 + side3) > side1) && ((side1 + side3) > side2)) && ((side1 > 0.0) && (side2 > 0.0) && (side3 > 0.0))) // если сумма двух сторон треугольника меньше или равна третьей стороне
     {
-        double side1 = calc_side(get_x1_coord(), get_y1_coord(), get_x2_coord(), get_y2_coord());
-        double side2 = calc_side(get_x1_coord(), get_y1_coord(), get_x3_coord(), get_y3_coord());
-        double side3 = calc_side(get_x2_coord(), get_x2_coord(), get_x3_coord(), get_y3_coord());
-        set_sides(side1, side2, side3);
+        double P = side1 + side2 + side3;
+        S = sqrt((P / 2) * ((P / 2) - side1) * ((P / 2) - side2) * ((P / 2) - side3)); // Возвращает периметр треугольника по формуле Герона
     }
-    if (((get_sideA() + get_sideB()) > get_sideC()) || ((get_sideB() + get_sideC()) > get_sideA()) || ((get_sideA() + get_sideC()) > get_sideB())) // если сумма двух сторон треугольника меньше или равна третьей стороне
-        S = sqrt(((get_sideA() + get_sideB() + get_sideC()) / 2) * (((get_sideA() + get_sideB() + get_sideC()) / 2) - get_sideA()) * (((get_sideA() + get_sideB() + get_sideC()) / 2) - get_sideB()) * (((get_sideA() + get_sideB() + get_sideC()) / 2) - get_sideC())); // Возвращает периметр треугольника по формуле Герона
+    else
+        S = 0;
+    return S;
+}
+
+/// <summary>
+/// вычисление площади.
+/// правило: сумма двух сторон треугольника должна быть больше третьей стороны
+/// </summary>
+/// <returns>
+/// площадь треугольника
+/// </returns>
+double Triangle_sides::calc_area() const
+{
+    double S;
+    if (((get_sideA() + get_sideB()) > get_sideC()) && ((get_sideB() + get_sideC()) > get_sideA()) && ((get_sideA() + get_sideC()) > get_sideB()) && (get_sideA() > 0) && (get_sideB() > 0) && (get_sideC() > 0)) // если сумма двух сторон треугольника меньше или равна третьей стороне
+    {
+        double P = get_sideA() + get_sideB() + get_sideC();
+        S = sqrt((P / 2) * ((P / 2) - get_sideA()) * ((P / 2) - get_sideB()) * ((P / 2) - get_sideC())); // Возвращает периметр треугольника по формуле Герона
+    }
     else
         S = 0;
     return S;
@@ -398,47 +429,131 @@ double Triangle::calc_area()
 /// <returns>
 /// строка с информацией о треугольнике: координаты вершин, длина сторон, периметр и площадь
 /// </returns>
-std::string Triangle::to_string()
+std::string Triangle_coord::to_string() const
 {
     std::string s =
         "Vertexs: (" + std::to_string(get_x1_coord()) + " ; " + std::to_string(get_y1_coord()) + "), (" +
                        std::to_string(get_x2_coord()) + " ; " + std::to_string(get_y2_coord()) + "), (" +
                        std::to_string(get_x3_coord()) + " ; " + std::to_string(get_y3_coord()) + ")\n" +
-        "Sides: " + std::to_string(get_sideA()) + " ; " +
-                    std::to_string(get_sideB()) + " ; " +
-                    std::to_string(get_sideC()) + "\n" +
         "Perimeter: " + std::to_string(calc_perim()) + "\n" +
         "Area: " + std::to_string(calc_area()) + "\n";
     return s;
 }
 
 /// <summary>
+/// вывод информации о треугольнике
+/// </summary>
+/// <returns>
+/// строка с информацией о треугольнике: координаты вершин, длина сторон, периметр и площадь
+/// </returns>
+std::string Triangle_sides::to_string() const
+{
+    std::string s =
+        "Sides: " + std::to_string(get_sideA()) + " ; " +
+        std::to_string(get_sideB()) + " ; " +
+        std::to_string(get_sideC()) + "\n" +
+        "Perimeter: " + std::to_string(calc_perim()) + "\n" +
+        "Area: " + std::to_string(calc_area()) + "\n";
+    return s;
+}
+
+void Triangle_sides::Safe_file(const char* name) const
+{
+    std::ofstream savefile(name);
+    if (!savefile.is_open())
+    {
+        throw "Не удается открыть файл для записи";
+    }
+    else
+    {
+        savefile << to_string();
+    }
+    savefile.close();
+
+}
+
+/*
+Triangle_sides Triangle_sides::Load_file(const char* name)
+{
+    std::ifstream loadfile(name);
+    if (!loadfile.is_open())
+    {
+        throw "Не удается открыть файл для чтения";
+    }
+    else
+    {
+
+    }
+    loadfile.close();
+}
+*/
+
+void Triangle_coord::Safe_file(const char* name) const
+{
+    std::ofstream savefile(name);
+    if (!savefile.is_open())
+    {
+        throw "Не удается открыть файл для записи";
+    }
+    else
+    {
+        savefile << to_string();
+    }
+    savefile.close();
+}
+
+/*
+Triangle_coord Triangle_coord::Load_file(const char* name)
+{
+    std::ifstream loadfile(name);
+    if (!loadfile.is_open())
+    {
+        throw "Не удается открыть файл для чтения";
+    }
+    else
+    {
+
+    }
+    loadfile.close();
+}
+*/
+
+/// <summary>
 /// проверка работы методов и функций
 /// </summary>
 void test()
 {
-    Triangle Test1(11, 11, 11);
-    Triangle Test2(-1, 2, 4, -5, 9, 10);
+    Triangle Test1;
+    Test1.TriangleS = new Triangle_sides(11, 11, 11);
+    Triangle Test2;
+    Test2.TriangleC = new Triangle_coord(-1, 2, 4, -5, 9, 10);
     Triangle Test3;
-    Test3.set_sides(12, 13, 14);
-    assert((Test3.get_sideA() - 12) < 0.00001); //проверка методов
-    assert((Test3.get_sideB() - 13) < 0.00001);
-    assert((Test3.get_sideC() - 14) < 0.00001);
-    assert((Test1.calc_perim() - 33) < 0.00001);
-    assert((Test2.calc_area() - 55) < 0.00001);
-    assert((Test2.get_x1_coord() - (-1)) < 0.00001);
-    assert((Test2.get_y1_coord() - (2)) < 0.00001);
-    assert((Test2.get_x2_coord() - (4)) < 0.00001);
-    assert((Test2.get_y2_coord() - (-5)) < 0.00001);
-    assert((Test2.get_x3_coord() - (9)) < 0.00001);
-    assert((Test2.get_y3_coord() - (10)) < 0.00001);
-    assert(Test1.to_string() == ("Vertexs: (0.000000 ; 0.000000), (0.000000 ; 0.000000), (0.000000 ; 0.000000)\nSides: 11.000000 ; 11.000000 ; 11.000000\nPerimeter: 33.000000\nArea: 52.394537\n"));
+    Test3.TriangleS = new Triangle_sides;
+    Test3.TriangleS->set_sides(12, 13, 14);
     Triangle Test4;
-    Test4.set_all_vert(-1, 5, 5, 5, -7, -6);
-    assert((Test4.get_x1_coord() - (-1)) < 0.00001);
-    assert((Test4.get_y1_coord() - (5)) < 0.00001);
-    assert((Test4.get_x2_coord() - (5)) < 0.00001);
-    assert((Test4.get_y2_coord() - (5)) < 0.00001);
-    assert((Test4.get_x3_coord() - (-7)) < 0.00001);
-    assert((Test4.get_y3_coord() - (-6)) < 0.00001);
+    Test4.TriangleC = new Triangle_coord;
+    Test4.TriangleC->set_all_vert(-1, 5, 5, 5, -7, -6);
+
+    assert(abs(Test3.TriangleS->get_sideA() - 12) < 0.00001); //проверка методов
+    assert(abs(Test3.TriangleS->get_sideB() - 13) < 0.00001);
+    assert(abs(Test3.TriangleS->get_sideC() - 14) < 0.00001);
+    assert(abs(Test1.TriangleS->calc_perim() - 33) < 0.00001);
+    assert(abs(Test2.TriangleC->get_x1_coord() - (-1)) < 0.00001);
+    assert(abs(Test2.TriangleC->get_y1_coord() - (2)) < 0.00001);
+    assert(abs(Test2.TriangleC->get_x2_coord() - (4)) < 0.00001);
+    assert(abs(Test2.TriangleC->get_y2_coord() - (-5)) < 0.00001);
+    assert(abs(Test2.TriangleC->get_x3_coord() - (9)) < 0.00001);
+    assert(abs(Test2.TriangleC->get_y3_coord() - (10)) < 0.00001);
+    assert(abs(Test2.TriangleC->calc_area() - 55.0) < 0.00001);
+    assert(Test1.TriangleS->to_string() == ("Sides: 11.000000 ; 11.000000 ; 11.000000\nPerimeter: 33.000000\nArea: 52.394537\n"));
+
+    assert(abs(Test4.TriangleC->get_x1_coord() - (-1)) < 0.00001);
+    assert(abs(Test4.TriangleC->get_y1_coord() - (5)) < 0.00001);
+    assert(abs(Test4.TriangleC->get_x2_coord() - (5)) < 0.00001);
+    assert(abs(Test4.TriangleC->get_y2_coord() - (5)) < 0.00001);
+    assert(abs(Test4.TriangleC->get_x3_coord() - (-7)) < 0.00001);
+    assert(abs(Test4.TriangleC->get_y3_coord() - (-6)) < 0.00001);
+    assert(abs(Test4.TriangleC->calc_perim() - (34.80878)) < 0.00001);
+    assert(abs(Test4.TriangleC->calc_area() - (33)) < 0.00001);
+    assert(Test4.TriangleC->to_string() == ("Vertexs: (-1.000000 ; 5.000000), (5.000000 ; 5.000000), (-7.000000 ; -6.000000)\nPerimeter: 34.808785\nArea: 33.000000\n"));
 }
