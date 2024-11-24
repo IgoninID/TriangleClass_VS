@@ -71,7 +71,7 @@ int main()
 
     Triangle Test4;
     Test4.TriangleC = new Triangle_coord;
-    Test4.TriangleC->set_all_vert(-1, 5, 5, 5, -7, -6);
+    Test4.TriangleC->Load_file("file.txt");
     print_triangleC(Test4);
 
     return 0; // завершение работы программы

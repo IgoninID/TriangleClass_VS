@@ -457,7 +457,7 @@ std::string Triangle_sides::to_string() const
     return s;
 }
 
-void Triangle_sides::Safe_file(const char* name) const
+void Triangle_sides::Safe_file(const std::string& name) const
 {
     std::ofstream savefile(name);
     if (!savefile.is_open())
@@ -466,14 +466,17 @@ void Triangle_sides::Safe_file(const char* name) const
     }
     else
     {
-        savefile << to_string();
+        savefile << get_sideA() << "\n";
+        savefile << get_sideB() << "\n";
+        savefile << get_sideC() << "\n";
+        savefile << calc_perim() << "\n";
+        savefile << calc_area() << "\n";
+        savefile.close();
     }
-    savefile.close();
 
 }
 
-/*
-Triangle_sides Triangle_sides::Load_file(const char* name)
+Triangle_sides Triangle_sides::Load_file(const std::string& name)
 {
     std::ifstream loadfile(name);
     if (!loadfile.is_open())
@@ -482,13 +485,14 @@ Triangle_sides Triangle_sides::Load_file(const char* name)
     }
     else
     {
-
+        double side1, side2, side3;
+        loadfile >> side1 >> side2 >> side3;
+        set_sides(side1, side2, side3);
+        loadfile.close();
     }
-    loadfile.close();
 }
-*/
 
-void Triangle_coord::Safe_file(const char* name) const
+void Triangle_coord::Safe_file(const std::string& name) const
 {
     std::ofstream savefile(name);
     if (!savefile.is_open())
@@ -497,13 +501,19 @@ void Triangle_coord::Safe_file(const char* name) const
     }
     else
     {
-        savefile << to_string();
+        savefile << get_x1_coord() << "\n";
+        savefile << get_y1_coord() << "\n";
+        savefile << get_x2_coord() << "\n";
+        savefile << get_y2_coord() << "\n";
+        savefile << get_x3_coord() << "\n";
+        savefile << get_y3_coord() << "\n";
+        savefile << calc_perim() << "\n";
+        savefile << calc_area() << "\n";
+        savefile.close();
     }
-    savefile.close();
 }
 
-/*
-Triangle_coord Triangle_coord::Load_file(const char* name)
+Triangle_coord Triangle_coord::Load_file(const std::string& name)
 {
     std::ifstream loadfile(name);
     if (!loadfile.is_open())
@@ -512,11 +522,12 @@ Triangle_coord Triangle_coord::Load_file(const char* name)
     }
     else
     {
-
+        double x1, x2, x3, y1, y2, y3;
+        loadfile >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+        set_all_vert(x1, y1, x2, y2, x3, y3);
+        loadfile.close();
     }
-    loadfile.close();
 }
-*/
 
 /// <summary>
 /// проверка работы методов и функций

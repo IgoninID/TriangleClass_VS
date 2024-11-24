@@ -190,9 +190,9 @@ public: // общедоступная область - доступ вне класса
     /// </returns>
     double calc_area() const;
 
-    void Safe_file(const char* name) const;
+    void Safe_file(const std::string& name) const;
 
-    //Triangle_coord Load_file(const char* name);
+    Triangle_coord Load_file(const std::string& name);
 
 };
 
@@ -304,9 +304,9 @@ public: // общедоступная область - доступ вне класса
     /// </returns>
     double calc_area() const;
 
-    void Safe_file(const char* name) const;
+    void Safe_file(const std::string& name) const;
 
-    //Triangle_sides Load_file(const char* name);
+    Triangle_sides Load_file(const std::string& name);
 
 };
 
