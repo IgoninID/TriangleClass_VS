@@ -461,12 +461,12 @@ std::string Triangle_sides::to_string() const
 /// метод сохранения информации о треугольнике в файл
 /// </summary>
 /// <param name="name-имя файла"></param>
-void Triangle_sides::Safe_file(const std::string& name) const
+int Triangle_sides::Safe_file(const std::string& name) const
 {
     std::ofstream savefile(name);
     if (!savefile.is_open())
     {
-        throw "Не удается открыть файл для записи";
+        return 1;
     }
     else
     {
@@ -476,6 +476,7 @@ void Triangle_sides::Safe_file(const std::string& name) const
         savefile << calc_perim() << "\n";
         savefile << calc_area() << "\n";
         savefile.close();
+        return 0;
     }
 
 }
@@ -485,12 +486,12 @@ void Triangle_sides::Safe_file(const std::string& name) const
 /// </summary>
 /// <param name="name-имя файла"></param>
 /// <returns></returns>
-Triangle_sides Triangle_sides::Load_file(const std::string& name)
+int Triangle_sides::Load_file(const std::string& name)
 {
     std::ifstream loadfile(name);
     if (!loadfile.is_open())
     {
-        throw "Не удается открыть файл для чтения";
+        return 1;;
     }
     else
     {
@@ -498,6 +499,7 @@ Triangle_sides Triangle_sides::Load_file(const std::string& name)
         loadfile >> side1 >> side2 >> side3;
         set_sides(side1, side2, side3);
         loadfile.close();
+        return 0;
     }
 }
 
@@ -505,12 +507,12 @@ Triangle_sides Triangle_sides::Load_file(const std::string& name)
 /// метод сохранения информации о треугольнике в файл
 /// </summary>
 /// <param name="name-имя файла"></param>
-void Triangle_coord::Safe_file(const std::string& name) const
+int Triangle_coord::Safe_file(const std::string& name) const
 {
     std::ofstream savefile(name);
     if (!savefile.is_open())
     {
-        throw "Не удается открыть файл для записи";
+        return 1;
     }
     else
     {
@@ -523,6 +525,7 @@ void Triangle_coord::Safe_file(const std::string& name) const
         savefile << calc_perim() << "\n";
         savefile << calc_area() << "\n";
         savefile.close();
+        return 0;
     }
 }
 
@@ -531,12 +534,12 @@ void Triangle_coord::Safe_file(const std::string& name) const
 /// </summary>
 /// <param name="name-имя файла"></param>
 /// <returns></returns>
-Triangle_coord Triangle_coord::Load_file(const std::string& name)
+int Triangle_coord::Load_file(const std::string& name)
 {
     std::ifstream loadfile(name);
     if (!loadfile.is_open())
     {
-        throw "Не удается открыть файл для чтения";
+        return 1;
     }
     else
     {
@@ -544,6 +547,7 @@ Triangle_coord Triangle_coord::Load_file(const std::string& name)
         loadfile >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
         set_all_vert(x1, y1, x2, y2, x3, y3);
         loadfile.close();
+        return 0;
     }
 }
 
