@@ -457,6 +457,10 @@ std::string Triangle_sides::to_string() const
     return s;
 }
 
+/// <summary>
+/// метод сохранения информации о треугольнике в файл
+/// </summary>
+/// <param name="name-имя файла"></param>
 void Triangle_sides::Safe_file(const std::string& name) const
 {
     std::ofstream savefile(name);
@@ -476,6 +480,11 @@ void Triangle_sides::Safe_file(const std::string& name) const
 
 }
 
+/// <summary>
+/// метод загрузки информации о треугольнике из файла
+/// </summary>
+/// <param name="name-имя файла"></param>
+/// <returns></returns>
 Triangle_sides Triangle_sides::Load_file(const std::string& name)
 {
     std::ifstream loadfile(name);
@@ -492,6 +501,10 @@ Triangle_sides Triangle_sides::Load_file(const std::string& name)
     }
 }
 
+/// <summary>
+/// метод сохранения информации о треугольнике в файл
+/// </summary>
+/// <param name="name-имя файла"></param>
 void Triangle_coord::Safe_file(const std::string& name) const
 {
     std::ofstream savefile(name);
@@ -513,6 +526,11 @@ void Triangle_coord::Safe_file(const std::string& name) const
     }
 }
 
+/// <summary>
+/// метод загрузки информации о треугольнике из файла
+/// </summary>
+/// <param name="name-имя файла"></param>
+/// <returns></returns>
 Triangle_coord Triangle_coord::Load_file(const std::string& name)
 {
     std::ifstream loadfile(name);

@@ -304,8 +304,17 @@ public: // общедоступная область - доступ вне класса
     /// </returns>
     double calc_area() const;
 
+    /// <summary>
+    /// метод сохранения информации о треугольнике в файл
+    /// </summary>
+    /// <param name="name-имя файла"></param>
     void Safe_file(const std::string& name) const;
 
+    /// <summary>
+    /// метод загрузки информации о треугольнике из файла
+    /// </summary>
+    /// <param name="name-имя файла"></param>
+    /// <returns></returns>
     Triangle_sides Load_file(const std::string& name);
 
 };
@@ -315,6 +324,9 @@ public: // общедоступная область - доступ вне класса
 /// </summary>
 void test();
 
+/// <summary>
+/// 
+/// </summary>
 union Triangle
 {
     Triangle_coord* TriangleC;
